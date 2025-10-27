@@ -1,0 +1,27 @@
+{% macro card(title, description, icon, className) %}
+  {% set baseClasses = "bg-white p-6 rounded-lg shadow-lg" %}
+  {% set finalClass = baseClasses ~ ' ' ~ className %}
+  {% set isRow = 'with-icon-row' in finalClass %}
+
+  <div class="{{ finalClass }}">
+    {% if isRow and icon %}
+      <div class="flex items-center">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-inset ring-blue-100">
+          {{ icon|raw }}
+        </div>
+        <div class="ml-5 flex-1 min-w-0">
+          <h3 class="text-xl font-semibold text-gray-900 mb-1 truncate">{{ title }}</h3>
+          <div class="text-gray-600 text-sm leading-relaxed">{{ description|raw }}</div>
+        </div>
+      </div>
+    {% else %}
+      {% if icon %}
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-inset ring-blue-100">
+          {{ icon|raw }}
+        </div>
+      {% endif %}
+      <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ title }}</h3>
+      <p class="text-gray-600 text-sm leading-relaxed">{{ description|raw }}</p>
+    {% endif %}
+  </div>
+{% endmacro %}

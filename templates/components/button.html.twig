@@ -1,0 +1,15 @@
+{% macro button(label, variant, className) %}
+  {% set baseClasses = "px-6 py-3 rounded-lg font-semibold transition-colors" %}
+
+  {% set variants = {
+    'primary': "bg-blue-600 text-white hover:bg-blue-700",
+    'outline': "border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white",
+    'secondary': "bg-green-600 text-white hover:bg-green-700"
+  } %}
+
+  {% set finalClass = baseClasses ~ ' ' ~ (variants[variant]|default(variants['primary'])) ~ ' ' ~ className %}
+
+  <button class="{{ finalClass }}">
+    {{ label }}
+  </button>
+{% endmacro %}

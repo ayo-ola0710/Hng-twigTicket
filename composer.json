@@ -1,0 +1,12 @@
+{
+    "name": "drm.a.olatunle/twigticket",
+    "autoload": {
+        "psr-4": {
+            "DrmAOlatunle\\Twigticket\\": "src/"
+        }
+    },
+    "require": {
+        "twig/twig": "^3.21",
+        "altorouter/altorouter": "^2.0"
+    }
+}

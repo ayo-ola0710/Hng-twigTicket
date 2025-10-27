@@ -1,0 +1,91 @@
+{% extends "base.html.twig" %}
+{% import 'components/button.html.twig' as ui %}
+{% import 'components/card.html.twig' as card %}
+{% block title %}TicketDash{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-gray-50">
+  <header class="bg-white shadow">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+      <div class="flex items-center">
+        <svg class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+        <span class="ml-2 text-xl font-bold text-gray-900"> TicketDash </span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 sm:justify-end">
+        <span class="text-sm text-gray-700 order-1 sm:order-none">Welcome, {{ user.name|default('User') }}!</span>
+        <form action="/user/tickets" method="get">
+          {{ ui.button('Tickets', 'outline', 'px-4 py-2 text-sm cursor-pointer w-full sm:w-auto') }}
+        </form>
+        {{ ui.button('Logout', 'outline', 'px-4 py-2 text-sm cursor-pointer w-full sm:w-auto',) }}
+        <button id="logoutBtn" class="hidden"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-2xl font-bold text-gray-900 mb-8">Dashboard</h1>
+
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8" id="statsGrid">
+      {{ card.card(
+        'Total Tickets',
+        '<div class="flex items-baseline">'
+          ~ '<div id="stat-total" class="text-2xl font-semibold text-gray-900">0</div>'
+          ~ '<div id="stat-total-change" class="ml-2 text-sm font-semibold text-green-600">+0%</div>'
+        ~ '</div>',
+        '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>',
+        'with-icon-row'
+      ) }}
+
+      {{ card.card(
+        'Open Tickets',
+        '<div class="flex items-baseline">'
+          ~ '<div id="stat-open" class="text-2xl font-semibold text-gray-900">0</div>'
+          ~ '<div id="stat-open-change" class="ml-2 text-sm font-semibold text-green-600">+0%</div>'
+        ~ '</div>',
+        '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>',
+        'with-icon-row'
+      ) }}
+
+      {{ card.card(
+        'Resolved Tickets',
+        '<div class="flex items-baseline">'
+          ~ '<div id="stat-resolved" class="text-2xl font-semibold text-gray-900">0</div>'
+          ~ '<div id="stat-resolved-change" class="ml-2 text-sm font-semibold text-green-600">+0%</div>'
+        ~ '</div>',
+        '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>',
+        'with-icon-row'
+      ) }}
+
+      {{ card.card(
+        'Avg. Resolution Time',
+        '<div class="flex items-baseline">'
+          ~ '<div id="stat-avg" class="text-2xl font-semibold text-gray-900">N/A</div>'
+          ~ '<div id="stat-avg-change" class="ml-2 text-sm font-semibold text-gray-500">0h</div>'
+        ~ '</div>',
+        '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>',
+        'with-icon-row'
+      ) }}
+    </div>
+
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+      <div class="px-4 py-5 sm:px-6 flex justify-between items-center border-b border-gray-200">
+        <h2 class="text-lg leading-6 font-medium text-gray-900">Recent Activity</h2>
+        <a href="/user/tickets" class="text-sm font-medium text-blue-600 hover:text-blue-500">View all</a>
+      </div>
+      <div class="bg-white overflow-hidden">
+        <ul class="divide-y divide-gray-200" id="recentList">
+          <!-- Recent items populated by JS -->
+        </ul>
+        <div id="noActivity" class="px-6 py-4 text-center text-gray-500 hidden">No recent activity</div>
+      </div>
+    </div>
+
+    {% include 'components/footer.html.twig' %}
+  </main>
+</div>
+{# Toastify + Auth + Dashboard page script #}
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="/assets/js/auth.js"></script>
+<script src="/assets/js/dashboard.js"></script>
+{% endblock %}

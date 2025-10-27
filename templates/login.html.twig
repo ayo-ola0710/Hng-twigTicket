@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+{% import 'components/button.html.twig' as ui %}
+{% block title %}TicketDash{% endblock %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-lg">
+    <form action="/" method="get" class="mb-4">
+      {{ ui.button('Back', 'outline', 'w-20 px-6 py-1 cursor-pointer hover:scale-105') }}
+    </form>
+
+    <div class="flex items-center justify-center h-16">
+      <div class="shrink-0 flex items-center">
+        <svg class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+        <span class="ml-2 text-xl font-bold text-gray-900"> TicketDash </span>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+    </div>
+
+    <form id="loginForm" class="mt-8 space-y-6" novalidate>
+      <div class="rounded-md space-y-4">
+        <div>
+          <label for="email" class="sr-only">Email address</label>
+          <input id="email" name="email" type="email" class="appearance-none rounded-lg relative block w-full px-3 py-3 border placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm border-gray-300" placeholder="Email address" />
+          <p id="error-email" class="mt-1 text-sm text-red-600 hidden"></p>
+        </div>
+
+        <div>
+          <label for="password" class="sr-only">Password</label>
+          <input id="password" name="password" type="password" class="appearance-none rounded-lg relative block w-full px-3 py-3 border placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm border-gray-300" placeholder="Password" />
+          <p id="error-password" class="mt-1 text-sm text-red-600 hidden"></p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input id="remember-me" name="rememberMe" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+          <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+        </div>
+        <div class="text-sm">
+          <a href="#" class="font-medium text-blue-600 hover:text-blue-500">Forgot your password?</a>
+        </div>
+      </div>
+
+      <div>
+        {{ ui.button('Sign in', 'primary', 'w-full py-3 px-4 text-sm cursor-pointer hover:scale-105') }}
+      </div>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Don't have an account?
+        <a href="/auth/signup" class="font-medium text-blue-600 hover:text-blue-500 cursor-pointer">Sign up</a>
+      </p>
+    </form>
+  </div>
+</div>
+{# Toastify + Auth + page script #}
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="/assets/js/auth.js"></script>
+<script src="/assets/js/login.js"></script>
+{% endblock %}
