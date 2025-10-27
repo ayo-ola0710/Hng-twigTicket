@@ -33,14 +33,6 @@ Use PHP’s built-in server (from the project root):
 php -S localhost:8000 -t public
 ```
 
-Then visit:
-
-- Home: http://localhost:8000/
-- Login: http://localhost:8000/auth/login
-- Signup: http://localhost:8000/auth/signup
-- Dashboard (protected): http://localhost:8000/user/dashboard
-- Tickets (protected): http://localhost:8000/user/tickets
-
 ## Auth model
 
 - Client helper in `public/assets/js/auth.js` manages localStorage and toasts.
