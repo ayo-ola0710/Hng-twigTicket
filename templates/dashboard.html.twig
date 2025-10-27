@@ -5,20 +5,22 @@
 {% block content %}
 <div class="min-h-screen bg-gray-50">
   <header class="bg-white shadow">
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-3">
       <div class="flex items-center">
-        <svg class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg class="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
         </svg>
-        <span class="ml-2 text-xl font-bold text-gray-900"> TicketDash </span>
+        <span class="ml-2 text-lg sm:text-xl font-bold text-gray-900"> TicketDash </span>
       </div>
-      <div class="flex flex-wrap items-center gap-3 sm:justify-end">
-        <span class="text-sm text-gray-700 order-1 sm:order-none">Welcome, {{ user.name|default('User') }}!</span>
-        <form action="/user/tickets" method="get">
-          {{ ui.button('Tickets', 'outline', 'px-4 py-2 text-sm cursor-pointer w-full sm:w-auto') }}
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+        <span class="text-xs sm:text-sm text-gray-700 order-1 sm:order-none">Welcome, {{ user.name|default('User') }}!</span>
+        <form action="/user/tickets" method="get" class="order-2 sm:order-none">
+          {{ ui.button('Tickets', 'outline', 'px-3 py-2 sm:px-4 text-xs sm:text-sm cursor-pointer w-full sm:w-auto') }}
         </form>
-        {{ ui.button('Logout', 'outline', 'px-4 py-2 text-sm cursor-pointer w-full sm:w-auto',) }}
-        <button id="logoutBtn" class="hidden"></button>
+        <div class="order-3 sm:order-none">
+          {{ ui.button('Logout', 'outline', 'px-3 py-2 sm:px-4 text-xs sm:text-sm cursor-pointer w-full sm:w-auto') }}
+          <button id="logoutBtn" class="hidden"></button>
+        </div>
       </div>
     </div>
   </header>

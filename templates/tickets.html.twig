@@ -4,20 +4,20 @@
 {% block content %}
 <div class="min-h-screen bg-gray-50 py-0 px-0">
   <header class="bg-white shadow w-full">
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-3">
       <div class="flex items-center">
-        <svg class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg class="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
         </svg>
-        <span class="ml-2 text-xl font-bold text-gray-900"> TicketDash </span>
+        <span class="ml-2 text-lg sm:text-xl font-bold text-gray-900"> TicketDash </span>
       </div>
-      <div class="flex flex-wrap items-center gap-3">
-        <span class="text-sm text-gray-700 order-1 sm:order-none">Welcome, {{ user.name|default('User') }}!</span>
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+        <span class="text-xs sm:text-sm text-gray-700 order-1 sm:order-none">Welcome, {{ user.name|default('User') }}!</span>
         <form action="/user/dashboard" method="get" class="order-2 sm:order-none">
-          {{ ui.button('Dashboard', 'outline', 'px-4 py-2 text-sm cursor-pointer w-full sm:w-auto') }}
+          {{ ui.button('Dashboard', 'outline', 'px-3 py-2 sm:px-4 text-xs sm:text-sm cursor-pointer w-full sm:w-auto') }}
         </form>
         <div class="order-3 sm:order-none">
-          {{ ui.button('Logout', 'outline', 'px-4 py-2 text-sm cursor-pointer w-full sm:w-auto') }}
+          {{ ui.button('Logout', 'outline', 'px-3 py-2 sm:px-4 text-xs sm:text-sm cursor-pointer w-full sm:w-auto') }}
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <h1 class="text-2xl font-bold text-gray-900">Ticket Management</h1>
         <p class="mt-1 text-sm text-gray-500">Manage all your support tickets in one place</p>
       </div>
-      <button id="openCreateBtn" class="mt-4 sm:mt-0 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+      <button id="openCreateBtn" class="mt-4 sm:mt-0 w-full sm:w-auto inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
         <svg class="-ml-1 mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
         </svg>
