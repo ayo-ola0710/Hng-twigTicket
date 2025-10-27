@@ -1,0 +1,13 @@
+# Ensure index.php is used as the front controller and pretty URLs work
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  # If the request is for an existing file or directory, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  # Otherwise, route everything to index.php
+  RewriteRule ^ index.php [L,QSA]
+</IfModule>
