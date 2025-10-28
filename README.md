@@ -16,6 +16,13 @@ A lightweight Twig/PHP port of the TicketDash app featuring auth, protected rout
 - Composer
 - Node.js + pnpm (optional if you want to rebuild CSS)
 
+## Dependencies
+
+- Twig
+- altorouter -for page routing
+- Toastifyjs - for toast messages
+- Tailwindcss - for styling
+
 ## Install
 
 ```bash
